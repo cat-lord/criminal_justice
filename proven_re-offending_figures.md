@@ -410,4 +410,4 @@ ggplot(df, aes(cohort, `Proportion of offenders who re-offend (%)`, color=subcat
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](figures/proven_re-offending_figures/unnamed-chunk-8-1.png)
