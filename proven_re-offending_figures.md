@@ -1,11 +1,11 @@
-Proven Re-offending figures
+### Proven Re-offending figures
 ================
 
 The following R code recreates the figures published in the Ministry of Justice's [Proven Re-offending Statistics Quarterly Bulletin, April 2013 to March 2014](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/495758/proven-reoffending-2014q1.pdf), using [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html).
 
 <br>
 <hr>
-###### Read and tidy the Ministry of Justice's proven reoffending and index disposal [data](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/495646/CSVs.zip)
+###### Read and tidy the Ministry of Justice's proven re-offending and index disposal [data](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/495646/CSVs.zip).
 
 ``` r
 library(tidyr) ; library(dplyr) ; library(ggplot2) ; library(scales) ; library(stringr) ; library(lubridate)
