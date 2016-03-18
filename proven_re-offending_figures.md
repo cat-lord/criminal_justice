@@ -191,7 +191,7 @@ df <- reoffending %>%
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-3-1.png)<!-- -->
+![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 <hr>
 <br>
@@ -233,7 +233,7 @@ ggplot(df, aes(cohort, `Proportion of offenders who re-offend (%)`, color=subcat
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-4-1.png)<!-- -->
+![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 <hr>
 <br>
@@ -274,7 +274,7 @@ ggplot(df, aes(subcategory2, `Proportion of offenders who re-offend (%)`, fill=f
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-5-1.png)<!-- -->
+![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 <hr>
 <br>
@@ -320,7 +320,7 @@ ggplot(df, aes(reorder(subcategory1, -`Proportion of offenders who re-offend (%)
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-6-1.png)<!-- -->
+![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 <hr>
 <br>
@@ -359,7 +359,7 @@ ggplot(df, aes(subcategory2, `Proportion of offenders who re-offend (%)`, fill=a
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-7-1.png)<!-- -->
+![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 <hr>
 <br>
@@ -410,4 +410,4 @@ ggplot(df, aes(cohort, `Proportion of offenders who re-offend (%)`, color=subcat
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-8-1.png)<!-- -->
+![](proven_re-offending_figures_files/figure-markdown_github/unnamed-chunk-8-1.png)
