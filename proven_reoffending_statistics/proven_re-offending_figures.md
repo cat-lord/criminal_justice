@@ -1,4 +1,4 @@
-### Proven Re-offending figures
+### Proven reoffending figures
 ================
 
 The following R code recreates the figures published in the Ministry of Justice's [Proven Re-offending Statistics Quarterly Bulletin, April 2013 to March 2014](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/495758/proven-reoffending-2014q1.pdf), using [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html).
@@ -191,7 +191,7 @@ df <- reoffending %>%
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](figures/proven_re-offending_figures/unnamed-chunk-3-1.png)
+![alt text](https://github.com/cat-lord/criminal_justice/blob/master/proven_reoffending_statistics/figures/unnamed-chunk-3-1.png "Fig 1")
 
 <hr>
 <br>
@@ -233,7 +233,7 @@ ggplot(df, aes(cohort, `Proportion of offenders who re-offend (%)`, color=subcat
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](figures/proven_re-offending_figures/unnamed-chunk-4-1.png)
+![alt text](https://github.com/cat-lord/criminal_justice/blob/master/proven_reoffending_statistics/figures/unnamed-chunk-4-1.png "Fig 2")
 
 <hr>
 <br>
@@ -274,7 +274,7 @@ ggplot(df, aes(subcategory2, `Proportion of offenders who re-offend (%)`, fill=f
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](figures/proven_re-offending_figures/unnamed-chunk-5-1.png)
+![alt text](https://github.com/cat-lord/criminal_justice/blob/master/proven_reoffending_statistics/figures/unnamed-chunk-5-1.png "Fig 3")
 
 <hr>
 <br>
@@ -320,7 +320,7 @@ ggplot(df, aes(reorder(subcategory1, -`Proportion of offenders who re-offend (%)
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](figures/proven_re-offending_figures/unnamed-chunk-6-1.png)
+![alt text](https://github.com/cat-lord/criminal_justice/blob/master/proven_reoffending_statistics/figures/unnamed-chunk-6-1.png "Fig 4")
 
 <hr>
 <br>
@@ -359,7 +359,7 @@ ggplot(df, aes(subcategory2, `Proportion of offenders who re-offend (%)`, fill=a
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](figures/proven_re-offending_figures/unnamed-chunk-7-1.png)
+![alt text](https://github.com/cat-lord/criminal_justice/blob/master/proven_reoffending_statistics/figures/unnamed-chunk-7-1.png "Fig 5")
 
 <hr>
 <br>
@@ -410,4 +410,4 @@ ggplot(df, aes(cohort, `Proportion of offenders who re-offend (%)`, color=subcat
   theme(plot.title = element_text(color="#666666", face="bold", size=15, hjust=0.5))
 ```
 
-![](figures/proven_re-offending_figures/unnamed-chunk-8-1.png)
+![alt text](https://github.com/cat-lord/criminal_justice/blob/master/proven_reoffending_statistics/figures/unnamed-chunk-8-1.png "Fig 6")
