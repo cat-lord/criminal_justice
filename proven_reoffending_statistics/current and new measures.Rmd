@@ -1,0 +1,171 @@
+---
+title: "Proven reoffending statistics (current and new measures): 2005/06-2013/14"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: readable
+    source: embed
+---
+
+```{r setup, include=FALSE}
+# Load packages and read data
+library(flexdashboard) ; library(shiny) ; library(dplyr) ; library(tidyr) ; library(highcharter)
+
+df <- read.csv("proven_reoffending_data.csv", header = T)
+df$date <- as.Date(df$date, format = "%Y-%m-%d")
+```
+
+### Overall reoffending rates
+
+```{r}
+temp <- df %>% 
+  filter(temporal_unit == "annual" & 
+           rate == "binary" &
+           date >= "2005-04-01" &
+           group == "All") %>% 
+  na.omit() %>% 
+  mutate(value = round(value, 1)) %>% 
+  spread(measure, value)
+
+hc <- highchart() %>%
+  hc_title(text = "Proportion of all offenders in England and Wales who commit a proven re-offence") %>% 
+  hc_xAxis(categories = temp$date) %>% 
+  hc_add_series(name = "Current measure", data = temp$old, color = "#fc9272") %>% 
+  hc_add_series(name = "New measure", data = temp$new, color = "#de2d26") %>% 
+  hc_yAxis(title = list(text = "Proportion of offenders who re-offend (%)"),
+           labels = list(format = "{value}%"), min = 0, max = 50) %>% 
+  hc_credits(enabled = TRUE, text = "Source: Ministry of Justice",
+             href = "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/519686/proven-reoffending-consultation-supporting-tables.xlsx",
+             style = list(fontSize = "12px")) %>%
+  hc_exporting(enabled = TRUE)
+hc %>% hc_add_theme(hc_theme_google())
+```
+
+*** 
+
+According to the Ministry of Justice's [Response to consultation on changes to proven reoffending statistics](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/519644/proven-reoffending-consultation-response.pdf), future proven reoffending statistics will be published for three month cohorts rather than 12 month cohorts. Reoffending rates for the financial year will also be published by calculating the mean of the 4 preceding three month offender cohorts. 
+
+The MoJ has identified that reoffending rates will rise as a result of averaging the three month cohorts because a greater proportion of prolific offenders will be included in each three month cohort. For example, the binary reoffending rate for 2013/14 using the existing measure (12 month cohort) is 26.2% but rises to 31.1% with the new measure (mean of 4 x 3 month cohorts).
+
+### Adult and juvenile reoffending rates
+
+```{r}
+temp <- df %>% 
+  filter(temporal_unit == "annual" & rate == "binary" & date >= "2005-04-01" & group == "Adult" |
+         temporal_unit == "annual" & rate == "binary" & date >= "2005-04-01" & group == "Juvenile" ) %>% 
+  na.omit() %>% 
+  mutate(value = round(value, 2)) %>% 
+  spread(measure, value)
+
+hc <- highchart() %>%
+  hc_title(text = "Proportion of adult and juvenile offenders in England and Wales who commit a proven re-offence") %>% 
+  hc_xAxis(categories = unique(temp$date)) %>%
+  hc_add_series(name = "Adult (current)", data = temp[which(temp$group == "Adult"), ]$old, color = "#a1d99b") %>% 
+  hc_add_series(name = "Adult (new)", data = temp[which(temp$group == "Adult"), ]$new, color = "#31a354") %>% 
+  hc_add_series(name = "Juvenile (current)", data = temp[which(temp$group == "Juvenile"), ]$old, color = "#a6bddb") %>% 
+  hc_add_series(name = "Juvenile (new)", data = temp[which(temp$group == "Juvenile"), ]$new, color = "#2b8cbe") %>% 
+  hc_yAxis(title = list(text = "Proportion of offenders who re-offend (%)"),
+           labels = list(format = "{value}%"), min = 0, max = 50) %>% 
+  hc_credits(enabled = TRUE, text = "Source: Ministry of Justice",
+             href = "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/519686/proven-reoffending-consultation-supporting-tables.xlsx",
+             style = list(fontSize = "12px")) %>%
+  hc_exporting(enabled = TRUE)
+hc %>% hc_add_theme(hc_theme_google())
+```
+
+*** 
+
+**NB** click the legend to add / remove variables and export the output by clicking the icon in the top righthand corner.
+
+### Average number of reoffences per reoffender overall
+
+```{r}
+temp <- df %>% 
+  filter(temporal_unit == "annual" & 
+           rate == "frequency" &
+           date >= "2005-04-01" &
+           group == "All") %>% 
+  na.omit() %>% 
+  mutate(value = round(value, 1)) %>% 
+  spread(measure, value)
+
+hc <- highchart() %>%
+  hc_title(text = "Average number of reoffences per reoffender") %>% 
+  hc_xAxis(categories = unique(temp$date)) %>% 
+  hc_add_series(name = "Current measure", data = temp$old, color = "#fc9272") %>% 
+  hc_add_series(name = "New measure", data = temp$new, color = "#de2d26") %>% 
+  hc_yAxis(title = list(text = "Average number of reoffences per reoffender"),
+           labels = list(format = "{value}"), min = 0, max = 5) %>% 
+  hc_credits(enabled = TRUE, text = "Source: Ministry of Justice",
+             href = "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/519686/proven-reoffending-consultation-supporting-tables.xlsx",
+             style = list(fontSize = "12px")) %>%
+  hc_exporting(enabled = TRUE)
+hc %>% hc_add_theme(hc_theme_google())
+```
+
+*** 
+
+**NB** click the legend to add / remove variables and export the output by clicking the icon in the top righthand corner.
+
+### Average number of reoffences per reoffender amongst adults and juveniles
+
+```{r}
+temp <- df %>% 
+  filter(temporal_unit == "annual" & rate == "frequency" & date >= "2005-04-01" & group == "Adult" |
+         temporal_unit == "annual" & rate == "frequency" & date >= "2005-04-01" & group == "Juvenile" ) %>% 
+  na.omit() %>% 
+  mutate(value = round(value, 1)) %>% 
+  spread(measure, value)
+
+hc <- highchart() %>%
+  hc_title(text = "Average number of reoffences per reoffender amongst adults and juveniles") %>% 
+  hc_xAxis(categories = unique(temp$date)) %>% 
+  hc_add_series(name = "Adult (current)", data = temp[which(temp$group == "Adult"), ]$old, color = "#a1d99b") %>% 
+  hc_add_series(name = "Adult (new)", data = temp[which(temp$group == "Adult"), ]$new, color = "#31a354") %>% 
+  hc_add_series(name = "Juvenile (current)", data = temp[which(temp$group == "Juvenile"), ]$old, color = "#a6bddb") %>% 
+  hc_add_series(name = "Juvenile (new)", data = temp[which(temp$group == "Juvenile"), ]$new, color = "#2b8cbe") %>%
+  hc_yAxis(title = list(text = "Average number of reoffences per reoffender"),
+           labels = list(format = "{value}"), min = 0, max = 5) %>% 
+  hc_credits(enabled = TRUE, text = "Source: Ministry of Justice",
+             href = "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/519686/proven-reoffending-consultation-supporting-tables.xlsx",
+             style = list(fontSize = "12px")) %>%
+  hc_exporting(enabled = TRUE)
+hc %>% hc_add_theme(hc_theme_google())
+```
+
+*** 
+
+**NB** click the legend to add / remove variables and export the output by clicking the icon in the top righthand corner.
+
+### Number of offenders, reoffenders and reoffences
+
+```{r}
+temp <- df %>% 
+  filter(temporal_unit == "annual" & rate == "cohort" & date >= "2005-04-01" & group == "All" |
+           temporal_unit == "annual" & rate == "reoffenders" & date >= "2005-04-01" & group == "All" |
+           temporal_unit == "annual" & rate == "reoffences" & date >= "2005-04-01" & group == "All") %>% 
+  na.omit() %>% 
+  mutate(value = round(value, 1)) %>% 
+  spread(measure, value)
+
+hc <- highchart() %>%
+  hc_title(text = "Number of offenders, reoffenders and reoffences") %>% 
+  hc_xAxis(categories = unique(temp$date)) %>% 
+  hc_add_series(name = "Offenders (current)", data = temp[which(temp$rate == "cohort"), ]$old, color = "#fdae6b") %>% 
+  hc_add_series(name = "Offenders (new)", data = temp[which(temp$rate == "cohort"), ]$new, color = "#e6550d") %>% 
+  hc_add_series(name = "Reoffenders (current)", data = temp[which(temp$rate == "reoffenders"), ]$old, color = "#a1d99b") %>%
+  hc_add_series(name = "Reoffenders (new)", data = temp[which(temp$rate == "reoffenders"), ]$new, color = "#31a354") %>% 
+  hc_add_series(name = "Reoffences (current)", data = temp[which(temp$rate == "reoffences"), ]$old, color = "#bdbdbd") %>% 
+  hc_add_series(name = "Reoffences (new)", data = temp[which(temp$rate == "reoffences"), ]$new, color = "#636363") %>% 
+  hc_yAxis(title = list(text = ""),
+           labels = list(format = "{value}")) %>% 
+  hc_credits(enabled = TRUE, text = "Source: Ministry of Justice",
+             href = "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/519686/proven-reoffending-consultation-supporting-tables.xlsx",
+             style = list(fontSize = "12px")) %>%
+  hc_exporting(enabled = TRUE)
+hc %>% hc_add_theme(hc_theme_google())
+```
+
+*** 
+
+**NB** click the legend to add / remove variables and export the output by clicking the icon in the top righthand corner.
