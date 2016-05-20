@@ -9,5 +9,5 @@ Ministry of Justice proven reoffending statistics presented using [flexdashboard
 *   [Binary proven reoffending rates](http://rpubs.com/pracademic/binary_reoffending)   
 A time series of binary proven reoffending rates for adults using 3-month offender cohorts.
 
-* [Sankey diagram](http://rpubs.com/pracademic/sankey)
+* [Sankey diagram](http://rpubs.com/pracademic/sankey)   
 A Sankey diagram showing the flow of offenders through the criminal justice system.
