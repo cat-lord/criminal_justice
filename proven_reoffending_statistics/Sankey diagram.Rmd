@@ -1,5 +1,5 @@
 ---
-title: "Proven adult reoffending - Sankey diagram"
+title: "Sankey diagram"
 output: html_document
 ---
 
